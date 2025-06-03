@@ -1,1 +1,4 @@
 /target
+/src/test.py
+/logs
+cargo.lock
