@@ -4,5 +4,6 @@
     "port_manager_port": "1030", 
     "port_manager_endpoint": "getport",
     "name_for_port_manager": "",
-    "logs_dir": "./logs"
+    "logs_dir": "./logs",
+    "workers_count": 4
 }
