@@ -15,6 +15,7 @@ pub struct Config {
     pub port_manager_endpoint: String,
     pub name_for_port_manager: String,
     pub logs_dir: String,
+    pub workers_count: usize
 }
 
 #[derive(serde::Deserialize)]
