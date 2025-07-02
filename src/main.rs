@@ -1,9 +1,12 @@
-use actix_web::{get, web, App, HttpRequest, HttpResponse, HttpServer, Responder};
+use actix_web::{dev::{ServiceRequest, ServiceResponse, Transform, Service}, get, post, web, App, HttpRequest, HttpResponse, HttpServer, Responder, Error, body::BoxBody};
 use serde::{Deserialize, Serialize};
-use serde_json;
+use futures::future::{ok, Ready, LocalBoxFuture};
+use std::task::{Context, Poll};
+use std::net::IpAddr;
+use std::rc::Rc;
 use std::time::Instant;
 use tokio::time::Duration;
-use tracing::{error, info};
+use tracing::{info, error};
 
 mod status;
 mod utils;
@@ -142,9 +145,7 @@ async fn main() -> std::io::Result<()> {
         std::process::exit(1);
     };
 
-    //let port = 1045;
-
-    let ip = config.ip.clone();
+    let ip = get_local_ip().map(|addr| addr.to_string()).unwrap_or("error".to_string());
 
     info!(target: "main", "Starting {} on {}:{}", &config.name_for_port_manager, ip, port);
 
@@ -159,4 +160,3 @@ async fn main() -> std::io::Result<()> {
     .run()
     .await
 }
-//
