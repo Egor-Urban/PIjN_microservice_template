@@ -152,6 +152,7 @@ async fn main() -> std::io::Result<()> {
     HttpServer::new(move || {
         App::new()
             .app_data(start_data.clone())
+            .wrap(LocalNetworkOnly)  
             .service(status_handler)
             .service(stop_handler)
     })
