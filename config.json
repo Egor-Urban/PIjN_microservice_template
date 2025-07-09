@@ -4,5 +4,8 @@
     "port_manager_endpoint": "getport",
     "name_for_port_manager": "",
     "logs_dir": "./logs",
-    "workers_count": 4
+    "workers_count": 4,
+    "hmac_secret": "nixuia",
+    "require_https": false
+
 }
